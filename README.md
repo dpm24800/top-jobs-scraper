@@ -1,6 +1,6 @@
 # **Merojob Top Jobs Scraper**
 
-Automated Python scraper that extracts **Top Jobs** listings from **Merojob.com** and exports them into **CSV**, **JSON**, and **Google Sheets**.
+Automated Python scraper that extracts **Top Jobs** listings from **Merojob.com** and exports them into CSV file.
 This tool helps developers, data analysts, and job seekers collect fresh job listings programmatically.
 
 ---
