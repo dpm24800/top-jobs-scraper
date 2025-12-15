@@ -34,6 +34,6 @@ jobs:
       run: |
         git config --global user.name "dpm24800"
         git config --global user.email "dpm.it24800@gmail.com"
-        git add top_jobs.csv by_deadline.csv
+        git add data/top_jobs.csv data/by_deadline.csv
         git commit -m "Hourly job scrape update" || echo "No changes to commit"
         git push
