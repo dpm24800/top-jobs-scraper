@@ -1,0 +1,49 @@
+flowchart TD
+    A([Start]) --> B[Set base path and data directory]
+    B --> C[Define CSV file paths and headers]
+
+    C --> D[Configure headless Chrome WebDriver]
+    D --> E[Open merojob.com]
+
+    E --> F{Click Individual Jobs tab}
+    F -->|Success| G[Wait for job listings to load]
+    F -->|Failure| Z[Exit program]
+
+    G --> H[Fetch all job cards]
+
+    H --> I{Does top_jobs.csv exist}
+    I -->|Yes| J[Load existing jobs and keys]
+    I -->|No| K[Initialize empty job list]
+
+    J --> L[Initialize new_jobs list]
+    K --> L
+
+    L --> M[Loop through each job card]
+    M --> N[Extract job details]
+
+    N --> O{Is job data valid}
+    O -->|No| M
+    O -->|Yes| P[Format deadline]
+
+    P --> Q{Is job already saved}
+    Q -->|Yes| M
+    Q -->|No| R[Add job to new_jobs and keys]
+    R --> M
+
+    M --> S[Close browser]
+
+    S --> T[Merge new jobs with existing jobs]
+    T --> U[Write updated top_jobs.csv]
+
+    U --> V{Does by_deadline.csv exist}
+    V -->|Yes| W[Load existing deadline jobs]
+    V -->|No| X[Initialize empty deadline list]
+
+    W --> Y[Add missing jobs]
+    X --> Y
+
+    Y --> AA[Sort jobs by deadline]
+    AA --> AB[Write by_deadline.csv]
+
+    AB --> AC([End])
+    Z --> AC
