@@ -30,7 +30,7 @@ Top-Jobs-Scrapper/
 ├── README.md               # Project documentation
 ├── .github/
 │   └── workflows/
-│       └── scrape.yml      # GitHub Actions workflow
+│       └── scrapper.yml      # GitHub Actions workflow
 └── data/
     ├── top_jobs.csv        # Main job listings
     └── by_deadline.csv     # Jobs sorted by deadline
