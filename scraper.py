@@ -1,7 +1,15 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+# Provides the WebDriver interface to control a browser (e.g., Chrome, Firefox)
+
+from selenium.webdriver.common.by import By  
+# Used to locate web elements using methods like ID, XPATH, CLASS_NAME, etc.
+
+from selenium.webdriver.support.ui import WebDriverWait  
+# Allows waiting for a specific condition to occur before continuing execution
+
+from selenium.webdriver.support import expected_conditions as EC  
+# Contains predefined conditions (like element visible, clickable) used with WebDriverWait
+
 import csv
 import time
 import os
@@ -26,9 +34,9 @@ FIELDNAMES = ["Post", "Company", "Experience", "Level", "Salary", "Deadline"]
 from selenium.webdriver.chrome.options import Options
 
 chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--headless") # Runs Chrome in headless mode. The browser works without opening a visible window.
+chrome_options.add_argument("--no-sandbox") # Disables Chrome’s security sandbox. Helps avoid permission-related crashes.
+chrome_options.add_argument("--disable-dev-shm-usage") # Prevents Chrome from using /dev/shm (shared memory). Instead, it uses disk storage.
 
 driver = webdriver.Chrome(options=chrome_options)
 
@@ -60,16 +68,16 @@ jobs = wait.until(
 # -------------------------
 # LOAD EXISTING top_jobs.csv
 # -------------------------
-existing_jobs = []
-existing_keys = set()
+existing_jobs = []      # List to store all existing job records from the CSV
+existing_keys = set()   # Set to store unique job identifiers for fast duplicate checking
 
 if os.path.exists(TOP_JOBS_CSV):
     with open(TOP_JOBS_CSV, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            key = (row["Post"], row["Company"], row["Deadline"])
-            existing_keys.add(key)
-            existing_jobs.append(row)
+        reader = csv.DictReader(f)  # Read CSV file as dictionaries using header row as keys
+        for row in reader:           # Iterate through each job record in the CSV
+            key = (row["Post"], row["Company"], row["Deadline"]) # Create a unique identifier for a job entry
+            existing_keys.add(key)      # Store the unique job key to avoid duplicates
+            existing_jobs.append(row)   # Save the full job record for later use
 
 # -------------------------
 # SCRAPE NEW JOBS
