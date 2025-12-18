@@ -28,6 +28,9 @@ Top-Jobs-Scrapper/
 ├── scraper.py              # Main scraping script
 ├── requirements.txt        # Python dependencies
 ├── README.md               # Project documentation
+├── flowchart.mmd           # Project flowchart (SVG)
+├── flowchart.mmd           # Project flowchart (Mermaid)
+├── .gitignore              
 ├── .github/
 │   └── workflows/
 │       └── scrapper.yml      # GitHub Actions workflow
